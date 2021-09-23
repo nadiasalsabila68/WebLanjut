@@ -3,6 +3,7 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
+
 $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
@@ -39,9 +40,9 @@ $routes->get('/', function () {
 	echo view ('layout/header',$data);
 	echo view ('layout/navbar');
     echo view ('v_home');
-    echo view ('layouts/footer');
-}
-);
+    echo view ('layout/footer');
+});
+$routes->get('/admin','Templating::index');
 $routes->get('/posts', 'postController::index');
 $routes->get('/about', function (){
 	$data = [
