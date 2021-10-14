@@ -1,7 +1,8 @@
 <?= $this->extend('template'); ?>
-
 <?= $this->section('content'); ?>
+
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -167,6 +168,17 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -174,23 +186,21 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="/admin" class="nav-link ">
+            <a href="/admin" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-</li>
-<li class="nav-item">
+            <li class="nav-item menu">
             <a href="/admin/posts" class="nav-link">
-              <i class="nav-icon fas fa-book-open"></i>
+              <i class="nav-icon fas "></i>
               <p>
-                My Posts
+                My Post
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-</li>
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -217,8 +227,17 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    <!-- bakal diubah-->
-
+    <!-- /.main content -->
+    <div class="container">
+        <a href="/admin/posts/create" class="btn btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
+    </div>
+    <!-- /.main content -->
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
