@@ -7,25 +7,25 @@ use App\Controllers\BaseController;
 class AdminPostsController extends BaseController
 {
 	public function index()
-	{
-		$PostModel = model("PostModel");
+    {
+        $PostModel = model("PostModel");
 		$data = [
-			'post' => $PostModel->findAll()
+			'posts' => $PostModel->findAll()
 		];
-		return view("posts/index",$data);
-	}
+		return view("posts/index", $data);
+    }
 
-	public function create()
-	{
-		session();
-		$data = [
-			'validation' => \Config\Services::validation(),
-		];
-		return view("posts/create", $data);
-	}
+    public function create()
+    {
+        session();
+        $data = [
+            'validation' => \Config\Services::validation(),
+        ];
+        return view ("posts/create", $data);
+    }
 
-	public function store()
-	{
+    public function store()
+    {
 		$valid = $this->validate([
 			"judul" => [
 				"label" => "Judul",
@@ -75,11 +75,38 @@ class AdminPostsController extends BaseController
 			];
 
 			$PostModel = model("PostModel");
-			$PostModel-> insert($data);
+			$PostModel -> insert($data);
 			return redirect()->to(base_url('/admin/posts/'));
 		} else {
 			return redirect()->to(base_url('/admin/posts/create'))->withInput()->with('validation', $this->validator);
 		}
-		// return view("posts/store");
+    }
+
+	public function delete($slug)
+	{
+		$PostModel = model("PostModel");
+		$PostModel->where('slug', $slug)->delete();
+		return redirect()->to(base_url('/admin/posts/'));
+		
+	}
+
+	public function edit($slug)
+	{
+		session();
+		$PostModel = model("PostModel");
+        $data = [
+            'validation' => \Config\Services::validation(),
+			'post' => $PostModel->where('slug', $slug)->first()
+        ];
+        return view ("posts/edit", $data);
+	}
+
+
+	public function update($slug)
+	{
+		$PostModel = model("PostModel");
+		$data = $this->request->getPost();
+		$PostModel->update($slug, $data);
+		return redirect()->to(base_url('/admin/posts/'));
 	}
 }

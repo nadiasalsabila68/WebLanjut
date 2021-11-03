@@ -11,3 +11,4 @@ class PostModel extends Model
 	protected $allowedFields        = ['judul','deskripsi','gambar','author','kategori','slug','created_at','updated_at'];
 	protected $useTimestamps        = true;
 }
+
